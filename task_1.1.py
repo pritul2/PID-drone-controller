@@ -166,9 +166,6 @@ class DroneFly():
 
 	
 	def pid_roll(self):
-		self.kp_roll
-		self.kd_roll
-		self.ki_roll
 		self.roll_err = self.drone_y-self.wp_y #Final position - current position#
 		self.errSum_roll += self.roll_err
 		derr = (self.roll_err-self.lasterr_roll)/(self.current_time)#derivative error#
@@ -178,9 +175,6 @@ class DroneFly():
 
 
 	def pid_pitch(self):
-		self.kp_pitch
-		self.kd_pitch
-		self.ki_pitch
 		self.pitch_err = self.wp_x-self.drone_x #Final position - current position#
 		self.errSum_pitch += self.pitch_err #Integrated error#
 		derr = (self.pitch_err-self.lasterr_pitch)/(self.current_time)#derivative error#
