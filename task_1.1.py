@@ -161,33 +161,42 @@ class DroneFly():
 			self.pid_roll()
 			self.pid_pitch()
 			self.pid_throt()
-			
+	
 			self.last_time = self.seconds
 
 	
 	def pid_roll(self):
+		self.kp_roll=9
+		self.kd_roll=0
 		self.roll_err = self.drone_y-self.wp_y #Final position - current position#
 		self.errSum_roll += self.roll_err
 		derr = (self.roll_err-self.lasterr_roll)/(self.current_time)#derivative error#
 		self.correct_roll = self.kp_roll*self.roll_err + self.ki_roll*self.errSum_roll + self.kd_roll*derr
+		print(self.correct_roll)
 		self.lasterr_roll = self.roll_err
 		self.plot_graph_y.publish(self.roll_err)
 
 
 	def pid_pitch(self):
+		self.kp_pitch=9
+		self.kd_pitch=0
 		self.pitch_err = self.wp_x-self.drone_x #Final position - current position#
 		self.errSum_pitch += self.pitch_err #Integrated error#
 		derr = (self.pitch_err-self.lasterr_pitch)/(self.current_time)#derivative error#
 		self.correct_pitch = self.kp_pitch*self.pitch_err + self.ki_pitch*self.errSum_pitch + self.kd_pitch*derr
+		print(self.correct_pitch)
 		self.lasterr_pitch = self.pitch_err
 		self.plot_graph_x.publish(self.pitch_err)
 
 
 	def pid_throt(self):
+		self.kp_throt=33
+		self.kd_throt=25
 		self.throt_err = self.wp_z-self.drone_z #Final position - current position#
 		self.errSum_throt += self.throt_err #Integrated error#
 		derr = (self.throt_err-self.lasterr_throt)/(self.current_time)
 		self.correct_throt = self.kp_throt*self.throt_err + self.ki_throt*self.errSum_throt + self.kd_throt*derr
+		print(self.correct_throt)
 		self.lasterr_throt = self.throt_err
 		self.plot_graph_z.publish(self.throt_err)
 
