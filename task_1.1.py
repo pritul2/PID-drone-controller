@@ -89,8 +89,8 @@ class DroneFly():
 
 
 		#error of PIDs
-		self.roll_error = 0.0
-		self.pitch_error=0.0
+		self.roll_err = 0.0
+		self.pitch_err=0.0
 		self.throt_err=0.0
 
 		#error sum of PIDs
@@ -103,8 +103,6 @@ class DroneFly():
 		self.errSum_throt=0.0
 		self.lasterr_throt=0.0
 
-		self.roll_error = 0.0
-		self.throt_err=0.0
 
 		self.zero = 0
 
@@ -167,7 +165,7 @@ class DroneFly():
 	
 	def pid_roll(self):
 		self.kp_roll=9
-		self.kd_roll=0
+		self.kd_roll=2
 		self.roll_err = self.drone_y-self.wp_y #Final position - current position#
 		self.errSum_roll += self.roll_err
 		derr = (self.roll_err-self.lasterr_roll)/(self.current_time)#derivative error#
@@ -179,7 +177,7 @@ class DroneFly():
 
 	def pid_pitch(self):
 		self.kp_pitch=9
-		self.kd_pitch=0
+		self.kd_pitch=4
 		self.pitch_err = self.wp_x-self.drone_x #Final position - current position#
 		self.errSum_pitch += self.pitch_err #Integrated error#
 		derr = (self.pitch_err-self.lasterr_pitch)/(self.current_time)#derivative error#
@@ -190,8 +188,8 @@ class DroneFly():
 
 
 	def pid_throt(self):
-		self.kp_throt=33
-		self.kd_throt=25
+		self.kp_throt=37
+		self.kd_throt=59
 		self.throt_err = self.wp_z-self.drone_z #Final position - current position#
 		self.errSum_throt += self.throt_err #Integrated error#
 		derr = (self.throt_err-self.lasterr_throt)/(self.current_time)
@@ -257,7 +255,3 @@ if __name__ == '__main__':
 		temp = DroneFly()
 		temp.position_hold()
 		rospy.spin()
-		
-
-
- 
