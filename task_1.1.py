@@ -110,6 +110,8 @@ class DroneFly():
 
 		rospy.sleep(.1)
 
+		self.count_for_1=0
+
 
 	def arm(self):
 		self.cmd.rcAUX4 = 1500
@@ -138,6 +140,35 @@ class DroneFly():
 			self.plot_zero.publish(self.zero)
 			self.calc_pid()
 
+			if(self.wp_x==-5.63 and self.wp_y==-5.63 and self.wp_z==30):
+				if ((self.drone_x<=(self.wp_x+0.2) and self.drone_x>=self.wp_x-0.2)and(self.drone_y<=self.wp_y+0.2 and self.drone_y>=self.wp_y-0.2) and (self.drone_z<=self.wp_z+1.5 and self.drone_z>=self.wp_z-1.5) ) :
+					self.wp_x=5.57
+					self.wp_y=-5.63
+					self.wp_z=30
+					print("next point")
+			elif(self.wp_x==5.57 and self.wp_y==-5.63 and self.wp_z==30):
+				if ((self.drone_x<=self.wp_x+0.2 and self.drone_x>=self.wp_x-0.2)and(self.drone_y<=self.wp_y+0.2 and self.drone_y>=self.wp_y-0.2) and (self.drone_z<=self.wp_z+1.5 and self.drone_z>=self.wp_z-1.5) ) :
+					self.wp_x=5.55
+					self.wp_y=5.54
+					self.wp_z=30
+					print("next point")
+			elif(self.wp_x==5.55 and self.wp_y==5.54 and self.wp_z==30):
+				if ((self.drone_x<=self.wp_x+0.2 and self.drone_x>=self.wp_x-0.2)and(self.drone_y<=self.wp_y+0.2 and self.drone_y>=self.wp_y-0.2) and (self.drone_z<=self.wp_z+1.5 and self.drone_z>=self.wp_z-1.5) ) :
+					self.wp_x=-5.6
+					self.wp_y=5.54
+					self.wp_z=30
+					print("next point")
+			elif(self.wp_x==-5.6 and self.wp_y==5.54 and self.wp_z==30):
+				if ((self.drone_x<=self.wp_x+0.2 and self.drone_x>=self.wp_x-0.2)and(self.drone_y<=self.wp_y+0.2 and self.drone_y>=self.wp_y-0.2) and (self.drone_z<=self.wp_z+1.5 and self.drone_z>=self.wp_z-1.5) ) :
+					self.wp_x=0.0
+					self.wp_y=0.0
+					self.wp_z=30
+					print("next point")
+					
+			elif(self.wp_x==0.0 and self.wp_y==0.0 and self.wp_z==30):
+				if ((self.drone_x<=self.wp_x+0.2 and self.drone_x>=self.wp_x-0.2)and(self.drone_y<=self.wp_y+0.2 and self.drone_y>=self.wp_y-0.2) and (self.drone_z<=self.wp_z+1.5 and self.drone_z>=self.wp_z-1.5) ) :
+					self.disarm()
+
 			# Check your X and Y axis. You MAY have to change the + and the -.
 			# We recommend you try one degree of freedom (DOF) at a time. Eg: Roll first then pitch and so on
 		 	pitch_value = int(1500 - self.correct_pitch)
@@ -165,24 +196,24 @@ class DroneFly():
 	
 	def pid_roll(self):
 		self.kp_roll=9
-		self.kd_roll=2
+		self.kd_roll=1
 		self.roll_err = self.drone_y-self.wp_y #Final position - current position#
 		self.errSum_roll += self.roll_err
 		derr = (self.roll_err-self.lasterr_roll)/(self.current_time)#derivative error#
 		self.correct_roll = self.kp_roll*self.roll_err + self.ki_roll*self.errSum_roll + self.kd_roll*derr
-		print(self.correct_roll)
+		##print(self.correct_roll)
 		self.lasterr_roll = self.roll_err
 		self.plot_graph_y.publish(self.roll_err)
 
 
 	def pid_pitch(self):
 		self.kp_pitch=9
-		self.kd_pitch=4
+		self.kd_pitch=1
 		self.pitch_err = self.wp_x-self.drone_x #Final position - current position#
 		self.errSum_pitch += self.pitch_err #Integrated error#
 		derr = (self.pitch_err-self.lasterr_pitch)/(self.current_time)#derivative error#
 		self.correct_pitch = self.kp_pitch*self.pitch_err + self.ki_pitch*self.errSum_pitch + self.kd_pitch*derr
-		print(self.correct_pitch)
+		##print(self.correct_pitch)
 		self.lasterr_pitch = self.pitch_err
 		self.plot_graph_x.publish(self.pitch_err)
 
@@ -194,7 +225,7 @@ class DroneFly():
 		self.errSum_throt += self.throt_err #Integrated error#
 		derr = (self.throt_err-self.lasterr_throt)/(self.current_time)
 		self.correct_throt = self.kp_throt*self.throt_err + self.ki_throt*self.errSum_throt + self.kd_throt*derr
-		print(self.correct_throt)
+		##print(self.correct_throt)
 		self.lasterr_throt = self.throt_err
 		self.plot_graph_z.publish(self.throt_err)
 
