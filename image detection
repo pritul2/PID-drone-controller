@@ -18,19 +18,30 @@ class WayPoint:
 
 		# Subscribe to whycon image_out
 		self.image_sub = rospy.Subscriber('whycon/image_out', Image, self.image_callback)
-		
+
+
 	def image_callback(self,msg):
 
 		# 'image' is now an opencv frame
 		# You can run opencv operations on 'image'
+
+		###DETECTING GREEn COLOUR###
 		image = self.ros_bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-		gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+		blur3 = cv2.medianBlur(image,5)
+		hsv = cv2.cvtColor(blur3,cv2.COLOR_BGR2HSV)
+		lower = np.array([175,0,176])
+		upper = np.array([255,255,255])
+		mask = cv2.inRange(hsv,lower,upper)
+		res = cv2.bitwise_and(image,image,mask=mask)
+		cv2.imshow('mask',res)
+		gray = cv2.cvtColor(res,cv2.COLOR_BGR2GRAY)
 		ret,thresh = cv2.threshold(gray,100,255,0)
 		abc, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-		cv2.drawContours(image,contours,-1,(0,255,0),3) ##neglect 0
-
-		cv2.imshow('image',image)
+		cv2.drawContours(res,contours,-1,(0,255,0),3) ##neglect 0
+		print len(contours-1)
+		cv2.imshow('image',res)
 		cv2.waitKey(0)
+		###DETECTING BLUE COLOUR##
 
 		
 if __name__ == '__main__':
