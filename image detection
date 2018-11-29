@@ -24,7 +24,13 @@ class WayPoint:
 		# 'image' is now an opencv frame
 		# You can run opencv operations on 'image'
 		image = self.ros_bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+		gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+		ret,thresh = cv2.threshold(gray,100,255,0)
+		abc, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		cv2.drawContours(image,contours,-1,(0,255,0),3) ##neglect 0
 
+		cv2.imshow('image',image)
+		cv2.waitKey(0)
 
 		
 if __name__ == '__main__':
