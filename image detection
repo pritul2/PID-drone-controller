@@ -25,7 +25,7 @@ class WayPoint:
 		# 'image' is now an opencv frame
 		# You can run opencv operations on 'image'
 
-		###DETECTING GREEn COLOUR###
+		###DETECTING COLOUR###
 		image = self.ros_bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
 		blur3 = cv2.medianBlur(image,5)
 		hsv = cv2.cvtColor(blur3,cv2.COLOR_BGR2HSV)
@@ -41,7 +41,6 @@ class WayPoint:
 		print len(contours-1)
 		cv2.imshow('image',res)
 		cv2.waitKey(0)
-		###DETECTING BLUE COLOUR##
 
 		
 if __name__ == '__main__':
