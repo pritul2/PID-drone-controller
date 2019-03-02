@@ -1,0 +1,8 @@
+prefix=/home/pritul/catkin_ws/devel
+
+Name: pollinator_bee
+Description: Description of pollinator_bee
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pritul/catkin_ws/devel/lib 
+Requires: 

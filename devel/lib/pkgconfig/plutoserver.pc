@@ -1,0 +1,8 @@
+prefix=/home/pritul/catkin_ws/devel
+
+Name: plutoserver
+Description: Description of plutoserver
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pritul/catkin_ws/devel/lib -lplutoclient
+Requires: roscpp rospy std_msgs message_runtime

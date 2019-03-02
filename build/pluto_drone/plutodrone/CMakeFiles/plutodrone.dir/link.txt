@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC -O3 -DNDEBUG -Wall -g -O4 -march=native -Wfatal-errors  -shared -Wl,-soname,libplutodrone.so -o /home/pritul/catkin_ws/devel/lib/libplutodrone.so CMakeFiles/plutodrone.dir/src/Communication.cpp.o CMakeFiles/plutodrone.dir/src/Protocol.cpp.o 

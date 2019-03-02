@@ -1,0 +1,224 @@
+<KeyWord name="simROS.subscribe" func="yes">
+<Overload retVal="number subscriberHandle">
+<Param name="string topicName" />
+<Param name="string topicType" />
+<Param name="string topicCallback" />
+<Param name="number queueSize=1" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.shutdownSubscriber" func="yes">
+<Overload retVal="">
+<Param name="number subscriberHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.subscriberTreatUInt8ArrayAsString" func="yes">
+<Overload retVal="">
+<Param name="number subscriberHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.advertise" func="yes">
+<Overload retVal="number publisherHandle">
+<Param name="string topicName" />
+<Param name="string topicType" />
+<Param name="number queueSize=1" />
+<Param name="bool latch=false" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.shutdownPublisher" func="yes">
+<Overload retVal="">
+<Param name="number publisherHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.publisherTreatUInt8ArrayAsString" func="yes">
+<Overload retVal="">
+<Param name="number publisherHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.publish" func="yes">
+<Overload retVal="">
+<Param name="number publisherHandle" />
+<Param name="table message" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.serviceClient" func="yes">
+<Overload retVal="number serviceClientHandle">
+<Param name="string serviceName" />
+<Param name="string serviceType" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.shutdownServiceClient" func="yes">
+<Overload retVal="">
+<Param name="number serviceClientHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.serviceClientTreatUInt8ArrayAsString" func="yes">
+<Overload retVal="">
+<Param name="number serviceClientHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.call" func="yes">
+<Overload retVal="table result">
+<Param name="number serviceClientHandle" />
+<Param name="table request" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.advertiseService" func="yes">
+<Overload retVal="number serviceServerHandle">
+<Param name="string serviceName" />
+<Param name="string serviceType" />
+<Param name="string serviceCallback" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.shutdownServiceServer" func="yes">
+<Overload retVal="">
+<Param name="number serviceServerHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.serviceServerTreatUInt8ArrayAsString" func="yes">
+<Overload retVal="">
+<Param name="number serviceServerHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.sendTransform" func="yes">
+<Overload retVal="">
+<Param name="table transform" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.sendTransforms" func="yes">
+<Overload retVal="">
+<Param name="table transforms" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.imageTransportSubscribe" func="yes">
+<Overload retVal="number subscriberHandle">
+<Param name="string topicName" />
+<Param name="string topicCallback" />
+<Param name="number queueSize=1" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.imageTransportShutdownSubscriber" func="yes">
+<Overload retVal="">
+<Param name="number subscriberHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.imageTransportAdvertise" func="yes">
+<Overload retVal="number publisherHandle">
+<Param name="string topicName" />
+<Param name="number queueSize=1" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.imageTransportShutdownPublisher" func="yes">
+<Overload retVal="">
+<Param name="number publisherHandle" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.imageTransportPublish" func="yes">
+<Overload retVal="">
+<Param name="number publisherHandle" />
+<Param name="string data" />
+<Param name="number width" />
+<Param name="number height" />
+<Param name="string frame_id" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.getTime" func="yes">
+<Overload retVal="number time">
+<Param name="number flag=0" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.getParamString" func="yes">
+<Overload retVal="bool exists,string value">
+<Param name="string name" />
+<Param name="string defaultValue=''" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.getParamInt" func="yes">
+<Overload retVal="bool exists,number value">
+<Param name="string name" />
+<Param name="number defaultValue=0" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.getParamDouble" func="yes">
+<Overload retVal="bool exists,number value">
+<Param name="string name" />
+<Param name="number defaultValue=0.0" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.getParamBool" func="yes">
+<Overload retVal="bool exists,bool value">
+<Param name="string name" />
+<Param name="bool defaultValue=false" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.setParamString" func="yes">
+<Overload retVal="">
+<Param name="string name" />
+<Param name="string value" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.setParamInt" func="yes">
+<Overload retVal="">
+<Param name="string name" />
+<Param name="number value" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.setParamDouble" func="yes">
+<Overload retVal="">
+<Param name="string name" />
+<Param name="number value" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.setParamBool" func="yes">
+<Overload retVal="">
+<Param name="string name" />
+<Param name="bool value" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.hasParam" func="yes">
+<Overload retVal="bool exists">
+<Param name="string name" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.deleteParam" func="yes">
+<Overload retVal="">
+<Param name="string name" />
+</Overload>
+</KeyWord>
+
+<KeyWord name="simROS.searchParam" func="yes">
+<Overload retVal="bool found,string name">
+<Param name="string name" />
+</Overload>
+</KeyWord>
+

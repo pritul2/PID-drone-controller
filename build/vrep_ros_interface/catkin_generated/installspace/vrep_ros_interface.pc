@@ -1,0 +1,8 @@
+prefix=/home/pritul/catkin_ws/install
+
+Name: vrep_ros_interface
+Description: Description of vrep_ros_interface
+Version: 3.3.0
+Cflags: 
+Libs: -L/home/pritul/catkin_ws/install/lib 
+Requires: roscpp rosconsole cv_bridge image_transport tf brics_actuator roslib brics_actuator actionlib_msgs control_msgs diagnostic_msgs geometry_msgs map_msgs nav_msgs pcl_msgs plutodrone sensor_msgs shape_msgs std_msgs tf2_geometry_msgs tf2_msgs tf2_sensor_msgs trajectory_msgs visualization_msgs

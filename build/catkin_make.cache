@@ -1,0 +1,2 @@
+brics_actuator:geometry2/geometry2:geometry2/test_tf2:geometry2/tf2:geometry2/tf2_bullet:geometry2/tf2_eigen:geometry2/tf2_geometry_msgs:geometry2/tf2_kdl:geometry2/tf2_msgs:geometry2/tf2_py:geometry2/tf2_ros:geometry2/tf2_sensor_msgs:geometry2/tf2_tools:pid_tune:pluto_drone/pluto_drone:pluto_drone/plutodrone:pluto_drone/plutoserver:pollinator_bee:vrep_ros_interface:whycon
+-DCATKIN_DEVEL_PREFIX=/home/pritul/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pritul/catkin_ws/install -G Unix Makefiles

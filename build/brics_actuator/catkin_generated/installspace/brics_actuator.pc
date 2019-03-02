@@ -1,0 +1,8 @@
+prefix=/home/pritul/catkin_ws/install
+
+Name: brics_actuator
+Description: Description of brics_actuator
+Version: 0.7.0
+Cflags: -I/home/pritul/catkin_ws/install/include
+Libs: -L/home/pritul/catkin_ws/install/lib 
+Requires: 

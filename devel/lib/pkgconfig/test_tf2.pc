@@ -1,0 +1,8 @@
+prefix=/home/pritul/catkin_ws/devel
+
+Name: test_tf2
+Description: Description of test_tf2
+Version: 0.6.3
+Cflags: 
+Libs: -L/home/pritul/catkin_ws/devel/lib 
+Requires: 
