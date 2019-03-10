@@ -139,7 +139,7 @@ class DroneFly():
 		while True:
 			self.plot_zero.publish(self.zero)
 			self.calc_pid()
-
+				
 			if(self.wp_x==-5.63 and self.wp_y==-5.63 and self.wp_z==30):
 				if ((self.drone_x<=(self.wp_x+0.2) and self.drone_x>=self.wp_x-0.2)and(self.drone_y<=self.wp_y+0.2 and self.drone_y>=self.wp_y-0.2) and (self.drone_z<=self.wp_z+1.5 and self.drone_z>=self.wp_z-1.5) ) :
 					self.wp_x=5.57
@@ -193,10 +193,11 @@ class DroneFly():
 	
 			self.last_time = self.seconds
 
-	
+	##Calculating the PID over the roll##
 	def pid_roll(self):
-		self.kp_roll=9
-		self.kd_roll=1
+		self.kp_roll=9 ##Experimental value of kp roll##
+		self.kd_roll=1 ##Experimental value of kd roll##
+		##Experimental value of ki roll is set to 0##
 		self.roll_err = self.drone_y-self.wp_y #Final position - current position#
 		self.errSum_roll += self.roll_err
 		derr = (self.roll_err-self.lasterr_roll)/(self.current_time)#derivative error#
@@ -205,10 +206,11 @@ class DroneFly():
 		self.lasterr_roll = self.roll_err
 		self.plot_graph_y.publish(self.roll_err)
 
-
+	##Caluculating the PID over the pitch##
 	def pid_pitch(self):
-		self.kp_pitch=9
-		self.kd_pitch=1
+		self.kp_pitch=9 ##Experimental value of kp pitch##
+		self.kd_pitch=1 ##Experimental value of kd pitch##
+		##Experimental value of ki pitch is set to 0##
 		self.pitch_err = self.wp_x-self.drone_x #Final position - current position#
 		self.errSum_pitch += self.pitch_err #Integrated error#
 		derr = (self.pitch_err-self.lasterr_pitch)/(self.current_time)#derivative error#
@@ -217,10 +219,11 @@ class DroneFly():
 		self.lasterr_pitch = self.pitch_err
 		self.plot_graph_x.publish(self.pitch_err)
 
-
+	##Calculating the PID over the throt##
 	def pid_throt(self):
-		self.kp_throt=37
-		self.kd_throt=59
+		self.kp_throt=37 ##Experimental value of kp throt##
+		self.kd_throt=59 ##Experimental value of kd throt##
+		##Experimental value of ki throt is set to 0##
 		self.throt_err = self.wp_z-self.drone_z #Final position - current position#
 		self.errSum_throt += self.throt_err #Integrated error#
 		derr = (self.throt_err-self.lasterr_throt)/(self.current_time)
@@ -273,6 +276,7 @@ class DroneFly():
 		self.ki_yaw = pid_val.Ki
 		self.kd_yaw = pid_val.Kd
 		
+	#This function gets the position of the drone from the whycon node##
 	def get_pose(self,pose):
 		#This is the subscriber function to get the whycon poses
 		#The x, y and z values are stored within the drone_x, drone_y and the drone_z variables
