@@ -29,18 +29,52 @@ class WayPoint:
 		image = self.ros_bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
 		blur3 = cv2.medianBlur(image,5)
 		hsv = cv2.cvtColor(blur3,cv2.COLOR_BGR2HSV)
-		lower = np.array([175,0,176])
-		upper = np.array([255,255,255])
+		image = self.ros_bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+		blur3 = image
+		hsv = cv2.cvtColor(blur3,cv2.COLOR_BGR2HSV)
+		
+		###DETECTING BLUE COLOUR##
+		lower1 = np.array([110, 50, 50])
+		upper1 = np.array([130, 255, 255])
+		mask1 = cv2.inRange(hsv,lower1,upper1)
+		res1 = cv2.bitwise_and(image,image,mask=mask1)
+		blur1 = cv2.medianBlur(mask1,5)
+		image1=blur3
+		gray1 = cv2.cvtColor(res1,cv2.COLOR_BGR2GRAY)
+		ret1,thresh1 = cv2.threshold(gray1,2,255,0)
+		abc1, contours1, hierarchy1 = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		cv2.drawContours(res1,contours1,-1,(0,255,0),3) ##neglect 0
+		print len(contours1)
+		self.red=contours1
+
+		##Detecting red colour##
+		lower2 = np.array([0, 100, 100])
+		upper2 = np.array([20, 255, 255])
+		mask2 = cv2.inRange(hsv,lower2,upper2)
+		res2 = cv2.bitwise_and(image,image,mask=mask2)
+		blur2 = cv2.medianBlur(mask2,5)
+		image2=blur2
+		gray2 = cv2.cvtColor(res2,cv2.COLOR_BGR2GRAY)
+		ret2,thresh2 = cv2.threshold(gray2,2,255,0)
+		abc2, contours2, hierarchy2 = cv2.findContours(thresh2,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		cv2.drawContours(res2,contours2,-1,(0,255,0),3) ##neglect 0
+		print len(contours2)
+		self.blue2=contours2
+
+
+		##Detectingt the green colour
+		lower = np.array([120, 100, 100])
+		upper = np.array([145, 255, 255])
 		mask = cv2.inRange(hsv,lower,upper)
 		res = cv2.bitwise_and(image,image,mask=mask)
-		cv2.imshow('mask',res)
+		blur3 = cv2.medianBlur(mask,5)
+		image=blur3
 		gray = cv2.cvtColor(res,cv2.COLOR_BGR2GRAY)
-		ret,thresh = cv2.threshold(gray,100,255,0)
+		ret,thresh = cv2.threshold(gray,2,255,0)
 		abc, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-		cv2.drawContours(res,contours,-1,(0,255,0),3) ##neglect 0
-		print len(contours-1)
-		cv2.imshow('image',res)
-		cv2.waitKey(0)
+		print len(contours)
+		self.green=contours
+
 
 		
 if __name__ == '__main__':
