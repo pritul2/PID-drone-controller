@@ -42,7 +42,7 @@ class WayPoint:
 		image1=blur3
 		gray1 = cv2.cvtColor(res1,cv2.COLOR_BGR2GRAY)
 		ret1,thresh1 = cv2.threshold(gray1,2,255,0)
-		abc1, contours1, hierarchy1 = cv2.findContours(thresh1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		abc1, contours1, hierarchy1 = cv2.findContours(mask1,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 		cv2.drawContours(res1,contours1,-1,(0,255,0),3) ##neglect 0
 		print len(contours1)
 		self.red=contours1
@@ -56,7 +56,7 @@ class WayPoint:
 		image2=blur2
 		gray2 = cv2.cvtColor(res2,cv2.COLOR_BGR2GRAY)
 		ret2,thresh2 = cv2.threshold(gray2,2,255,0)
-		abc2, contours2, hierarchy2 = cv2.findContours(thresh2,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		abc2, contours2, hierarchy2 = cv2.findContours(mask2,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 		cv2.drawContours(res2,contours2,-1,(0,255,0),3) ##neglect 0
 		print len(contours2)
 		self.blue2=contours2
@@ -71,7 +71,7 @@ class WayPoint:
 		image=blur3
 		gray = cv2.cvtColor(res,cv2.COLOR_BGR2GRAY)
 		ret,thresh = cv2.threshold(gray,2,255,0)
-		abc, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		abc, contours, hierarchy = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 		print len(contours)
 		self.green=contours
 
