@@ -37,6 +37,6 @@ Final Result PID = Proportional Gain +  Derivative Gain + Integral Gain
 
 Here Kp, Kd and Ki are the experimental values which we get and it is different for each and every system although of the same type
 <br/><br/>  
-    
+------------------
 #### <<<< CLICK BELOW TO WATCH WORKING VIDEO >>>> !!!   
 [![image](https://user-images.githubusercontent.com/41751718/197324723-cb599170-121d-4be0-b367-1a8590e0d42b.png)](https://youtu.be/6gyY-dop8fA)
